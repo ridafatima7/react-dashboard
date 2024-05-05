@@ -1,32 +1,27 @@
 import React,{useState} from 'react'
-// import {AnimateSharedLayout} from 'framer-motion';
 import { LayoutGroup } from 'framer-motion';
-import ExpandedCard from './ExpandedCard';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import {UilTimes} from '@iconscout/react-unicons';
+import Chart from 'react-apexcharts';
 const Card = (props) => {
     const [expanded,setExpanded]=useState(false);
   return (
    <LayoutGroup>
     { expanded ? (
-       <ExpandedCard />
+       <ExpandedCard param={props} setExpanded={()=>setExpanded(false)}/>
        )
        :
-       <CompactCard  param={props} />
+       <CompactCard  param={props} setExpanded={()=>setExpanded(true)}/>
 
     }
    </LayoutGroup>
   )
 }
-function CompactCard({ param }) {
-  // Ensure png is a valid React component, or handle it appropriately
-  const Png = param.png; // If `param.png` should be a component, make sure it's capitalized to be used as a component
-
-  // Destructure the `color` object
-  const { background, boxShadow } = param.color;
-
+function CompactCard({ param,setExpanded }) {
+  const Png = param.png;
   return (
-    <div className='CompactCard' style={{ background, boxShadow }}>
+    <motion.div className='CompactCard' layoutId='expandableCard' style={{ background:param.color.backGround, boxShadow:param.color.boxShadow }} onClick={setExpanded}>
       <div className='radialBar'>
         <CircularProgressbar
           value={param.barValue}
@@ -35,11 +30,84 @@ function CompactCard({ param }) {
         <span>{param.title}</span>
       </div>
       <div className='detail'>
-        {Png && <Png />} 
+         <Png />
         <span>Rs {param.value}</span>
         <span>Last 24 hours</span>
       </div>
-    </div>
+    </motion.div>
   );
+}
+function ExpandedCard({param,setExpanded}){
+  const data={
+    options:{
+      chart:{
+        type:'area',
+        height:'auto'
+      },
+      dropShadow:{
+        enabled:false,
+        enabledOnSeries:undefined,
+        top:0,
+        left:0,
+        blur:3,
+        color:'#000',
+        opacity:0.35,
+      },
+      fill:{
+        type:'gradient',
+        colors:['#fff'],
+      },
+      dataLabels:{
+        enabled:false,
+      },
+      stroke:{
+        curve:'smooth',
+        color:['white'],
+      },
+      tooltip:{
+        x:{
+          format:'dd/MM/yy HH:mm'
+        },
+        grid:{
+          show:true,
+        },
+        xaxis:{
+          type:'datetime',
+          categories:[
+            '2024-4-30 :00 00 00',
+            '2024-4-30 :00 00 00',
+            '2024-4-30 :00 00 00',
+            '2024-4-30 :00 00 00',
+            '2024-4-30 :00 00 00',
+            '2024-4-30 :00 00 00',
+            '2024-4-30 :00 00 00',
+          ]
+        },
+
+      }
+
+    }
+  }
+  return(
+   <div className='ExpandedCard' style={{background:param.color.backGround,boxShadow:param.color.boxShadow}} layoutId='expandableCard'>
+     <div  style={{alignSelf:'flex-end',cursor:'pointer',color:'white'}}>
+      <UilTimes onClick={setExpanded}
+      />
+     </div>
+     <span>
+      {param.title}
+     </span>
+     <div className='chartContainer'>
+     <Chart 
+        series={param.series}
+        type='area'
+        option={data.options}
+     >
+
+     </Chart>
+     </div>
+     <span>Last 24 hours</span>
+   </div>
+  )
 }
 export default Card

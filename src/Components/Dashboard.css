@@ -59,6 +59,18 @@
     width:100%;
     bottom:2.3rem;
 }
+.bars{
+    display:flex;
+    position: fixed;
+    top:2rem;
+    z-index:9;
+    background: #ffe0e0;
+    padding:10px;
+    border-radius: 10px;
+}
+.bars{
+    display: none;
+}
 /* ===================Main Dashboard============== */
 .MainDash{
     display: flex;
@@ -117,6 +129,7 @@
 .detail{
     flex:1;
     display:flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
 }
@@ -126,6 +139,53 @@
 }
 .detail>span:nth-child(3){
     font-size: 12px;
+}
+/* ====================Expanded Card=================== */
+.ExpandedCard{
+    position:absolute;
+    width:60%;
+    height:70vh;
+    z-index:9;
+    left:13rem;
+    border-radius: 1rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem;
+}
+.ExpandedCard>span:nth-of-type(1){
+    color:white;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: 0px 0px 0px 15px white;
+}
+.ExpandedCard>span:nth-of-type(2){
+    color:rgb(223,222,222);
+    font-size: 16px;
+}
+.chartContainer{
+    width:70%;
+}
+/* =====================Table================== */
+.MuiTableRow-root>*{
+   padding:10px;
+}
+.MuiTableRow-root.MuiTableRow-head{
+    font-weight: bold !important;
+}
+.Table td ,th{
+    border:none !important
+}
+.Table:first-child{
+    border-radius: 0.7rem !important;
+}
+.status{
+    padding:8px;
+    border-radius: 9px;
+}
+.details{
+    color:#00b5ff;
 }
 /* ===================Right Side============== */
 .RightSide{
@@ -154,9 +214,63 @@
 .notification>div>span:nth-of-type(1){
     font-weight: bold;
 }
+@media screen and (max-width:768px){
+.Sidebar{
+    display: none;
+}
+.MainDash{
+    align-items: center;
+}
+.Cards{
+    width:90%;
+}
+.ExpandedCard{
+    top:8rem;
+    height:50%;
+    left:15px;
+    width:80%;
+}
+.Table{
+    width:8rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+}
+.RightSide{
+    width:100%;
+    margin-top: 0;
+}
+.RightSide>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Sidebar{
+    position: fixed;
+    z-index: 9;
+    background: #ffe0e0;
+    width:55%;
+    padding-right: 1rem;
+    height:100%;
+}
+.menuItem>span{
+    display: block;
+}
+.logo{
+    display: flex;
+}
+.menu .menuItem:last-child{
+    position: relative;
+    margin-top:2rem;
+}
+}
 @media screen and (max-width:1200px){
   .menuItem>span{
     display: none;
+  }
+  .logo{
+    display:none;
   }
   .MainDash{
     margin-top: 2rem;
@@ -177,6 +291,10 @@
   .RightSide{
     justify-content: flex-start;
     margin-top:3rem;
+  }
+  .Table{
+    width:170%;
+    margin-top: 2rem;
   }
   
 }
