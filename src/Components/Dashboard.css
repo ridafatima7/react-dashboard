@@ -1,0 +1,182 @@
+/* ===================Sidebar Styling============== */
+.Sidebar{
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 300ms ease;
+    padding-top:4rem;
+}
+.logo{
+    display: flex;
+    height:5rem;
+    font-weight: bold;
+    font-size: 22px;
+    gap:1rem;
+    align-items: center;
+    justify-content: center;
+    height:4%;
+}
+.logo>img{
+    width:3rem;
+    height:3rem;
+}
+.logo>span>span{
+    color:var(--pink);
+}
+.menu{
+    margin-top:4rem;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+.menuItem{
+    display:flex;
+    gap:1rem;
+    align-items: center;
+    height:2.5rem;
+    margin-left:2rem;
+    position: relative;
+    transition: all 300ms ease;
+    font-size:14px;
+    border-radius: 0.7rem;
+}
+.menuItem:hover{
+    cursor:pointer;
+}
+.active{
+    background: var(--activeItem);
+    margin-left: 0;
+    margin-right:calc(1rem-8px)
+}
+.active::before{
+    content:'';
+    width:8px;
+    height:100%;
+    background:var(--pink);
+}
+.menu .menuItem:last-child{
+    position:absolute;
+    width:100%;
+    bottom:2.3rem;
+}
+/* ===================Main Dashboard============== */
+.MainDash{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+/* ===================Cards============== */
+.Cards{
+    display:flex;
+    gap:1rem;
+}
+.parentContainer{
+    width:100%;
+}
+.CompactCard{
+    display:flex;
+    flex:1;
+    height:7rem !important;
+    border-radius: 0.7rem;
+    color:white;
+    position: relative;
+    cursor:pointer;
+    padding: 1rem;
+}
+.CompactCard:hover{
+    box-shadow: none;
+}
+.radialBar{
+    flex:1;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap:1rem;
+}
+.CircularProgressbar{
+    width:4rem !important;
+    overflow: visible;
+}
+.CircularProgressbar-path{
+    stroke:white !important;
+    stroke-width:12px !important;
+    filter:drop-shadow(2px 4px 6px white);
+}
+.CircularProgressbar-trail{
+    display:none !important;
+}
+.CircularProgressbar-text{
+    fill:white !important;
+}
+.radialBar>span{
+    font-size:17px;
+    font-weight: bold;
+}
+.detail{
+    flex:1;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.detail>span:nth-child(2){
+    font-size: 22px;
+    font-weight: bold;
+}
+.detail>span:nth-child(3){
+    font-size: 12px;
+}
+/* ===================Right Side============== */
+.RightSide{
+    display: flex;
+    flex-direction: column;
+    width:95%;
+    justify-content: space-evenly;
+}
+.updates{
+    width:85%;
+    background-color: white;
+    padding:1rem;
+    gap:1rem;
+    border-radius: 0.7rem;
+    display: flex;
+    flex-direction: column;
+}
+.update{
+    display: flex;
+    gap:0.5rem;
+}
+.update>img{
+    width:3.2rem;
+    height:3.2rem;
+}
+.notification>div>span:nth-of-type(1){
+    font-weight: bold;
+}
+@media screen and (max-width:1200px){
+  .menuItem>span{
+    display: none;
+  }
+  .MainDash{
+    margin-top: 2rem;
+    justify-content: flex-start;
+  }
+  .Cards{
+    display: flex;
+    gap:1rem;
+  }
+  .parentContainer{
+    height:9rem;
+  }
+  .Expanded-container{
+    top:2rem;
+    height:45vh;
+    left:6rem;
+  }
+  .RightSide{
+    justify-content: flex-start;
+    margin-top:3rem;
+  }
+  
+}
